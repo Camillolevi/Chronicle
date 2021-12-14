@@ -1,0 +1,31 @@
+rule login_from_different_external_ip_WindowsVersion {
+  meta:
+    // Allows for storage of arbitrary key-value pairs of rule details - who
+    // wrote it, what it detects on, version control, etc.
+    // The "author" and "severity" fields are special, as they are used as
+    // columns on the rules dashboard. If you'd like to be able to sort based on
+    // these fields on the dashboard, make sure to add them here.
+    // Severity value, by convention, should be "Low", "Medium" or "High"
+    author = "Camillo Levi"
+    description = "Login from different ip address"
+    severity = "Medium"
+    version = "1.1"
+
+  events:
+    $e.metadata.event_type = "USER_LOGIN"
+    $e.target.user.userid = $user  
+    (  
+        $e.metadata.product_name = "Windows" or 
+        $e.principal.platform = "WINDOWS"
+    )
+    $e.security_result.action = "ALLOW"
+    // insert whitelisted IPs
+    $e.principal.ip = $ip
+    
+
+  match:
+    $user over 60m // change time range if necessary
+
+  condition:
+    #ip > 2
+}
