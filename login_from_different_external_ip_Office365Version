@@ -1,0 +1,28 @@
+rule login_from_different_external_ip_Office365Version {
+  meta:
+    // Allows for storage of arbitrary key-value pairs of rule details - who
+    // wrote it, what it detects on, version control, etc.
+    // The "author" and "severity" fields are special, as they are used as
+    // columns on the rules dashboard. If you'd like to be able to sort based on
+    // these fields on the dashboard, make sure to add them here.
+    // Severity value, by convention, should be "Low", "Medium" or "High"
+    author = "camillo.levi@external.telepass.com"
+    description = "Login from different ip address filtering email addresses"
+    severity = "Medium"
+    version = "1.0"
+
+  events:
+    $e.metadata.event_type = "USER_LOGIN" 
+    $e.target.user.email_addresses = $user
+    $e.metadata.product_name = "Office 365"
+    $e.security_result.action = "ALLOW"
+    //here is possible to whitelist some IP 
+    $e.principal.ip = $ip
+    
+
+  match:
+    $user over 60m  // setup the time-range that you want 
+
+  condition:
+    #ip > 2
+}
