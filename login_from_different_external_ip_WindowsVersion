@@ -7,7 +7,7 @@ rule login_from_different_external_ip_WindowsVersion {
     // these fields on the dashboard, make sure to add them here.
     // Severity value, by convention, should be "Low", "Medium" or "High"
     author = "Camillo Levi"
-    description = "Login from different ip address"
+    description = "Login from different ip address filtering the principal platform/product name of the log"
     severity = "Medium"
     version = "1.1"
 
