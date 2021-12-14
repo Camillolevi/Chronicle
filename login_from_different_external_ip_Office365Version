@@ -7,7 +7,7 @@ rule login_from_different_external_ip_Office365Version {
     // these fields on the dashboard, make sure to add them here.
     // Severity value, by convention, should be "Low", "Medium" or "High"
     author = "Camillo Levi"
-    description = "Login from different ip address filtering email addresses"
+    description = "Rule that triggers when it detects login from different ip address, filtered by email addresses"
     severity = "Medium"
     version = "1.0"
 
