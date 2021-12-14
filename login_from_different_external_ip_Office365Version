@@ -6,7 +6,7 @@ rule login_from_different_external_ip_Office365Version {
     // columns on the rules dashboard. If you'd like to be able to sort based on
     // these fields on the dashboard, make sure to add them here.
     // Severity value, by convention, should be "Low", "Medium" or "High"
-    author = "camillo.levi@external.telepass.com"
+    author = "Camillo Levi"
     description = "Login from different ip address filtering email addresses"
     severity = "Medium"
     version = "1.0"
