@@ -1,0 +1,25 @@
+rule IOC_log4j_NetworkConnection {
+  meta:
+    // Allows for storage of arbitrary key-value pairs of rule details - who
+    // wrote it, what it detects on, version control, etc.
+    // The "author" and "severity" fields are special, as they are used as
+    // columns on the rules dashboard. If you'd like to be able to sort based on
+    // these fields on the dashboard, make sure to add them here.
+    // Severity value, by convention, should be "Low", "Medium" or "High"
+    author = "Camillo Levi"
+    description = "This rule triggers when a Network Connection is established with some of the malicious IP connected with log4j vulnerability, on the well-known ports"
+    severity = "Medium"
+
+  events:
+    $e.metadata.event_type = "NETWORK_CONNECTION"
+    (   $e.target.ip = "45.155.205.233"
+        or $e.target.ip = "45.130.229.168"
+        or $e.target.ip = "210.141.105.67"
+        or $e.target.ip = "159.89.182.117"
+        or $e.target.ip = "167.172.44.255"
+        or $e.target.ip = "45.83.193.150" )
+        and $e.target.port <= 1023
+
+  condition:
+    $e
+}
